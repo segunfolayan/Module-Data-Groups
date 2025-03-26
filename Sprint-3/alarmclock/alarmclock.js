@@ -2,7 +2,7 @@
 
 function setAlarm() {
   const alarmInput = document.getElementById("alarmSet");
-  const timeRemainingDisplay = document.getElementById("timeRemaining"); // Assuming you have this element in your HTML
+  const timeRemainingDisplay = document.getElementById("timeRemaining"); 
 
   if (!alarmInput || !timeRemainingDisplay) {
     console.error("Input or display element not found.");
@@ -17,13 +17,17 @@ function setAlarm() {
   }
 
   const now = new Date();
-  const alarmDate = new Date(now.getTime() + alarmTimeInMinutes * 60000); // Convert minutes to milliseconds
+  const alarmDate = new Date(now.getTime() + alarmTimeInMinutes*1000);
 
-  let intervalId; // Store the interval ID for clearing it later
 
-  function updateDisplay() {
-    const currentTime = new Date();
-    const timeLeft = alarmDate - currentTime;
+  let intervalId; 
+
+
+
+    function updateDisplay() {
+      const currentTime = new Date();
+      const timeLeft = Math.max(0, Math.floor((alarmDate - currentTime) / 1000));
+
 
     if (timeLeft <= 0) {
       clearInterval(intervalId); // Stop the interval
@@ -32,10 +36,14 @@ function setAlarm() {
       return;
     }
 
-    const minutes = Math.floor(timeLeft / 60000);
-    const seconds = Math.floor((timeLeft % 60000) / 1000);
+
+
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
 
     timeRemainingDisplay.textContent = `Time Remaining: ${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+
+    
   }
 
   updateDisplay(); // Initial display update
