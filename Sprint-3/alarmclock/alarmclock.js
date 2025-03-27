@@ -16,8 +16,8 @@ function setAlarm() {
     return;
   }
 
-  const now = new Date();
-  const alarmDate = new Date(now.getTime() + alarmTimeInSeconds*1000);
+  const now = new Date();  //  what does this mean
+  const alarmDate = new Date(now.getTime() + alarmTimeInSeconds*1000); //what does this mean
 
 
   let intervalId; 
@@ -26,7 +26,9 @@ function setAlarm() {
 
     function updateDisplay() {
       const currentTime = new Date();
-      const timeLeft = Math.max(0, Math.floor((alarmDate - currentTime) / 1000));
+      //const timeLeft = Math.max(0, Math.floor((alarmDate - currentTime) / 1000));
+      const timeLeft =  Math.floor((alarmDate - currentTime) / 1000);
+      
 
 
     if (timeLeft <= 0) {
