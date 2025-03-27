@@ -9,15 +9,15 @@ function setAlarm() {
     return;
   }
 
-  const alarmTimeInMinutes = parseInt(alarmInput.value);
+  const alarmTimeInSeconds = parseInt(alarmInput.value);
 
-  if (isNaN(alarmTimeInMinutes) || alarmTimeInMinutes < 0) {
+  if (isNaN(alarmTimeInSeconds) || alarmTimeInSeconds < 0) {
     alert("Please enter a valid positive number for the alarm time (in minutes).");
     return;
   }
 
   const now = new Date();
-  const alarmDate = new Date(now.getTime() + alarmTimeInMinutes*1000);
+  const alarmDate = new Date(now.getTime() + alarmTimeInSeconds*1000);
 
 
   let intervalId; 
