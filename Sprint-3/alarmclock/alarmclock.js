@@ -16,11 +16,14 @@ function setAlarm() {
     return;
   }
 
-  const now = new Date();  //  what does this mean
+  const now = new Date();  //what does this mean
   const alarmDate = new Date(now.getTime() + alarmTimeInSeconds*1000); //what does this mean
 
-
-  let intervalId; 
+  
+  //let intervalId; 
+  if (window.intervalId){
+    clearInterval(window.intervalId)
+  }
 
 
 
@@ -32,7 +35,7 @@ function setAlarm() {
 
 
     if (timeLeft <= 0) {
-      clearInterval(intervalId); // Stop the interval
+      clearInterval(window.intervalId); // Stop the interval
       timeRemainingDisplay.textContent = "Time Remaining: 00:00";
       playAlarm();
       return;
@@ -49,7 +52,7 @@ function setAlarm() {
   }
 
   updateDisplay(); // Initial display update
-  intervalId = setInterval(updateDisplay, 1000); // Update every second
+ window.intervalId = setInterval(updateDisplay, 1000); // Update every second
 }
  
 
