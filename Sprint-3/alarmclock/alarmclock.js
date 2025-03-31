@@ -1,40 +1,24 @@
-
-
 function setAlarm() {
   const alarmInput = document.getElementById("alarmSet");
   const timeRemainingDisplay = document.getElementById("timeRemaining"); 
-  const heading = page.window.document.querySelector("#timeRemaining");
   
-
   if (!alarmInput || !timeRemainingDisplay) {
     console.error("Input or display element not found.");
     return;
   }
 
-  const alarmTimeInSeconds = parseInt(alarmInput.value);
+  let timeLeft = parseInt(alarmInput.value);
 
-  if (isNaN(alarmTimeInSeconds) || alarmTimeInSeconds < 0) {
-    alert("Please enter a valid positive number for the alarm time (in minutes).");
+  if (isNaN(timeLeft) || timeLeft < 0) {
+    alert("Please enter a valid positive number for the alarm time (in seconds).");
     return;
   }
 
-  const now = new Date();  //.......
-  const alarmDate = new Date(now.getTime() + alarmTimeInSeconds*1000); //.....
-
-  
-  
-  if (window.intervalId){
-    clearInterval(window.intervalId)
+  if (window.intervalId) {
+    clearInterval(window.intervalId);
   }
 
-
-
-    function updateDisplay() {
-      const currentTime = new Date();
-      const timeLeft =  Math.floor((alarmDate - currentTime) / 1000);
-      
-
-
+  function updateDisplay() {
     if (timeLeft <= 0) {
       clearInterval(window.intervalId); 
       timeRemainingDisplay.textContent = "Time Remaining: 00:00";
@@ -42,20 +26,16 @@ function setAlarm() {
       return;
     }
 
-
-
     const minutes = Math.floor(timeLeft / 60);
     const seconds = timeLeft % 60;
-
     timeRemainingDisplay.textContent = `Time Remaining: ${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
-
     
+    timeLeft--; 
   }
 
-  updateDisplay(); // Initial display update
- window.intervalId = setInterval(updateDisplay, 1000); // Update every second
+  updateDisplay(); 
+  window.intervalId = setInterval(updateDisplay, 1000);
 }
- 
 
 // DO NOT EDIT BELOW HERE
 
