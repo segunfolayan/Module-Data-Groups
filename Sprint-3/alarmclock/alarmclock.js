@@ -3,6 +3,8 @@
 function setAlarm() {
   const alarmInput = document.getElementById("alarmSet");
   const timeRemainingDisplay = document.getElementById("timeRemaining"); 
+  const heading = page.window.document.querySelector("#timeRemaining");
+  
 
   if (!alarmInput || !timeRemainingDisplay) {
     console.error("Input or display element not found.");
@@ -16,11 +18,11 @@ function setAlarm() {
     return;
   }
 
-  const now = new Date();  //what does this mean
-  const alarmDate = new Date(now.getTime() + alarmTimeInSeconds*1000); //what does this mean
+  const now = new Date();  //.......
+  const alarmDate = new Date(now.getTime() + alarmTimeInSeconds*1000); //.....
 
   
-  //let intervalId; 
+  
   if (window.intervalId){
     clearInterval(window.intervalId)
   }
@@ -29,13 +31,12 @@ function setAlarm() {
 
     function updateDisplay() {
       const currentTime = new Date();
-      //const timeLeft = Math.max(0, Math.floor((alarmDate - currentTime) / 1000));
       const timeLeft =  Math.floor((alarmDate - currentTime) / 1000);
       
 
 
     if (timeLeft <= 0) {
-      clearInterval(window.intervalId); // Stop the interval
+      clearInterval(window.intervalId); 
       timeRemainingDisplay.textContent = "Time Remaining: 00:00";
       playAlarm();
       return;
