@@ -2,7 +2,7 @@
   "name": "module-data-groups",
   "version": "1.0.0",
   "license": "CC-BY-SA-4.0",
-  "description": "",
+  "description": "jest",
   "scripts": {
     "test": "jest --testMatch='**/*.js'",
     "format": "prettier --write ."
